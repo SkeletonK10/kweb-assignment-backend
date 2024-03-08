@@ -34,3 +34,12 @@ export const signJWT = (id: string) => {
   );
   return token;
 }
+
+export const decodeJWT = (token: string | undefined) => {
+  if (token === undefined) {
+    throw new Error("Token has not came!");
+  }
+  const decoded = jwt.verify(token, jwtKey);
+  // console.log(decoded);
+  return decoded;
+}
