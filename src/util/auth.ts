@@ -1,10 +1,12 @@
 import bcrypt from 'bcrypt';
 
 export const validateRegInfo = (id: string, pw: string) => {
-  if (3 > id.length && id.length > 32)
+  const idExp = RegExp(`^[A-Za-z0-9]{3,32}$`);
+  const pwExp = RegExp(`^[A-Za-z0-9]{8,}$`);
+  if (idExp.test(id) === false)
     return 1;
   
-  else if (8 > pw.length)
+  else if (pwExp.test(pw) === false)
     return 2;
   
   return 0;

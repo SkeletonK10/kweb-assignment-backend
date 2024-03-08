@@ -35,14 +35,16 @@ export const handleRegister = async (req: Request, res: Response, next: NextFunc
     if (lenCheck === 1) {
       res.json({
         code: 1002,
-        msg: "아이디가 너무 짧습니다!",
+        msg: "아이디가 조건에 맞지 않습니다!",
       });
+      return next();
     }
     else if (lenCheck === 2) {
       res.json({
         code: 1003,
-        msg: "비밀번호가 너무 짧습니다!",
+        msg: "비밀번호가 조건에 맞지 않습니다!",
       });
+      return next();
     }
     
     const encodedPW = encodePW(req.body.pw);
