@@ -1,4 +1,7 @@
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+
+import { jwtKey } from '../secret';
 
 export const validateRegInfo = (id: string, pw: string) => {
   const idExp = RegExp(`^[A-Za-z0-9]{3,32}$`);
@@ -16,4 +19,18 @@ export const encodePW = (pw: string) => {
   const encodedPW = bcrypt.hashSync(pw, 10);
   console.log(encodedPW);
   return encodedPW;
+}
+
+export const signJWT = (id: string) => {
+  const token = jwt.sign(
+    {
+      type: "JWT",
+      id: id,
+    },
+    jwtKey,
+    {
+      expiresIn: "30m",
+    }
+  );
+  return token;
 }

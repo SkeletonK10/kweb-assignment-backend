@@ -1,9 +1,9 @@
 import { Client } from "pg";
-import config from "./db_secret";
+import { dbConfig } from "./secret";
 
 export const getConnection = async () => {
   console.log("CONNECT TO DB");
-  const client = new Client(config);
+  const client = new Client(dbConfig);
   await client.connect();
   return client;
 }

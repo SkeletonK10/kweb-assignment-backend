@@ -1,9 +1,9 @@
 import { Router } from "express";
 
-import { welcome } from "../api";
+import { handleLogin } from "./api";
 
 const router = Router();
 
-router.get("/", welcome);
+router.post("/", handleLogin);
 
 export default router;
