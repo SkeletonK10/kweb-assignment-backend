@@ -16,11 +16,13 @@ export const getLectureList = async (req: Request, res: Response, next: NextFunc
   `;
   
   const professorQuery = `
-  SELECT  id,
-          name,
-          professor
-  FROM    lecture
-  WHERE   professor=$1
+  SELECT  L.id as id,
+          L.name as name,
+          U.name as professor
+  FROM    lecture as L
+          JOIN
+          userinfo as U on L.professor = U.id
+  WHERE   L.professor=$1
   `;
   
   try {
@@ -50,6 +52,7 @@ export const getLecture = async (req: Request, res: Response, next: NextFunction
   const query = `
   SELECT  L.id as id,
           L.name as name,
+          U.id as professorid,
           U.name as professor
   FROM    lecture as L
           JOIN
@@ -77,8 +80,10 @@ export const getLecture = async (req: Request, res: Response, next: NextFunction
     const result = (await client.query(query, [req.params.id])).rows[0];
     const articles = (await client.query(articleQuery, [req.params.id])).rows;
     await client.end();
-    result.articles = articles;
-    res.json(result);
+    res.json({
+      ...result,
+      articles: articles,
+    });
   } catch (err) {
     console.log(err);
     res.json({
