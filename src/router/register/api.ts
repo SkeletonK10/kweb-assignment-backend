@@ -22,7 +22,6 @@ export const handleRegister = async (req: Request, res: Response, next: NextFunc
   try {
     const client = await getConnection();
     const idDup = (await client.query(idQuery, [req.body.id])).rows;
-    console.log(idDup);
     if (idDup.length !== 0) {
       res.json({
         code: 1001,
@@ -52,8 +51,8 @@ export const handleRegister = async (req: Request, res: Response, next: NextFunc
       req.body.id,
       encodedPW,
       req.body.name,
-      req.body.stID,
-      req.body.isStudent
+      req.body.stid,
+      req.body.isstudent
     ];
     await client.query(query, queryParams);
     await client.end();
