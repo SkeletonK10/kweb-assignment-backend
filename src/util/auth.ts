@@ -21,7 +21,6 @@ export const validateRegInfo = (id: string, pw: string) => {
 
 export const encodePW = (pw: string) => {
   const encodedPW = bcrypt.hashSync(pw, 10);
-  console.log(encodedPW);
   return encodedPW;
 }
 
