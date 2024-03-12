@@ -1,13 +1,11 @@
 import { Router } from "express";
 
 import { auth } from "../../util/auth";
-import { getLectureList, getLecture, openLecture } from "./api";
+import { getLectureList, getTakingLectureList } from "./api";
 
 const router = Router();
 
 router.get("/", auth, getLectureList);
-router.get("/:id", auth, getLecture);
-
-router.post("/", auth, openLecture);
+router.get("/:id", auth, getTakingLectureList);
 
 export default router;
