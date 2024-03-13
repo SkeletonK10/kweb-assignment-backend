@@ -19,10 +19,12 @@ node와 express 기반 API 서버입니다.
 ### 테스트 서버 설정 및 실행 방법
 
 1. 저장소 다운로드
-   `$ git clone https://github.com/skeletonk10/kweb-assignment-backend`
+   `$ git clone https://github.com/skeletonk10/kweb-assignment-backend.git`
 
 2. kweb-assignment-backend 폴더에서 콘솔로 다음 명령어 입력
+
    `$ npm i`
+
    `$ npm run dev`
 
 3. src 폴더에 주어진 secret.ts 파일을 DB 설정에 맞게 수정한 후 붙여넣기
