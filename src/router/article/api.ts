@@ -6,7 +6,7 @@ export const getArticle = async (req: Request, res: Response, next: NextFunction
   const query = `
   SELECT  A.id as id,
           A.title as title,
-          A.createdat as createdat,
+          TO_CHAR(A.createdat, 'YYYY.MM.DD') as createdat,
           L.name as lecture,
           L.professor as professor,
           A.content as content

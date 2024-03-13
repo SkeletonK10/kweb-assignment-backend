@@ -63,7 +63,7 @@ export const getLecture = async (req: Request, res: Response, next: NextFunction
   const articleQuery = `
   SELECT  id,
           title,
-          createdat
+          TO_CHAR(createdat, 'YYYY.MM.DD') as createdat
   FROM article
   WHERE lecture=$1
   `;
